@@ -23,8 +23,9 @@ namespace _12SATProject
                       "~/Scripts/bootstrap.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/css/bootstrap.min.css",
+                      "~/Content/Site.css," +
+                      "~/Content/css/style.css"));
         }
     }
 }
