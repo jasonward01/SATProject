@@ -10,7 +10,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using _12SATProject.Models;
 
-namespace _12SATProject.Controllers
+namespace _12SATProject
 {
     [Authorize]
     public class AccountController : Controller

@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.1800
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "12SATProject", "12SATProject\12SATProject.csproj", "{0007609C-9B41-4CD2-898A-353C4B14BCC4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SATProject.UI.MVC", "12SATProject\SATProject.UI.MVC.csproj", "{0007609C-9B41-4CD2-898A-353C4B14BCC4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
