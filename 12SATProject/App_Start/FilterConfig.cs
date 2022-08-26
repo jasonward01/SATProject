@@ -1,7 +1,6 @@
-﻿using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 
-namespace _12SATProject
+namespace SATProject.UI.MVC
 {
     public class FilterConfig
     {

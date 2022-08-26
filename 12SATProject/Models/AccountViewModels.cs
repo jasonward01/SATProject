@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace _12SATProject.Models
+namespace SATProject.UI.MVC.Models
 {
     public class ExternalLoginConfirmationViewModel
     {
