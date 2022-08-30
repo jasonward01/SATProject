@@ -91,7 +91,7 @@ namespace SATProject.DATA.EF/*.SATMetadata*/
         public string InstructorName { get; set; }
 
         [Required(ErrorMessage = "*Field Required")]
-        [StringLength(20, ErrorMessage = "*Must be 20 characters or less."]
+        [StringLength(20, ErrorMessage = "*Must be 20 characters or less.")]
         public string Location { get; set; }
 
     }
@@ -108,6 +108,7 @@ namespace SATProject.DATA.EF/*.SATMetadata*/
     {
         [Required(ErrorMessage = "*Field Required")]
         [Display(Name = "Course Name")]
+        [StringLength(50, ErrorMessage = "*Must be 50 characters or less.")]
         public string CourseName { get; set; }
 
         [Required(ErrorMessage = "*Field Required")]

@@ -17,13 +17,13 @@ namespace SATProject.DATA.EF
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public ScheduledClassStatus()
         {
-            this.ScheduledClasses = new HashSet<ScheduledClass>();
+            this.ScheduledClass = new HashSet<ScheduledClass>();
         }
     
         public int SCSID { get; set; }
         public string SCSName { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ScheduledClass> ScheduledClasses { get; set; }
+        public virtual ICollection<ScheduledClass> ScheduledClass { get; set; }
     }
 }
