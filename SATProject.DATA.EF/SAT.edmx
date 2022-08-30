@@ -185,7 +185,7 @@
           <Property Name="Curriculum" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="Notes" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="ScheduledClasses" Relationship="Self.FK_ScheduledClasses_Courses" FromRole="Courses" ToRole="ScheduledClasses" />
+          <NavigationProperty Name="ScheduledClass" Relationship="Self.FK_ScheduledClasses_Courses" FromRole="Courses" ToRole="ScheduledClasses" />
         </EntityType>
         <EntityType Name="Enrollment">
           <Key>
@@ -209,8 +209,8 @@
           <Property Name="InstructorName" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Location" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="SCSID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Cours" Relationship="Self.FK_ScheduledClasses_Courses" FromRole="ScheduledClasses" ToRole="Courses" />
-          <NavigationProperty Name="Enrollments" Relationship="Self.FK_Enrollments_ScheduledClasses" FromRole="ScheduledClasses" ToRole="Enrollments" />
+          <NavigationProperty Name="Course" Relationship="Self.FK_ScheduledClasses_Courses" FromRole="ScheduledClasses" ToRole="Courses" />
+          <NavigationProperty Name="Enrollment" Relationship="Self.FK_Enrollments_ScheduledClasses" FromRole="ScheduledClasses" ToRole="Enrollments" />
           <NavigationProperty Name="ScheduledClassStatus" Relationship="Self.FK_ScheduledClasses_ScheduledClassStatuses" FromRole="ScheduledClasses" ToRole="ScheduledClassStatuses" />
         </EntityType>
         <EntityType Name="ScheduledClassStatus">
@@ -219,7 +219,7 @@
           </Key>
           <Property Name="SCSID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="SCSName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="ScheduledClasses" Relationship="Self.FK_ScheduledClasses_ScheduledClassStatuses" FromRole="ScheduledClassStatuses" ToRole="ScheduledClasses" />
+          <NavigationProperty Name="ScheduledClass" Relationship="Self.FK_ScheduledClasses_ScheduledClassStatuses" FromRole="ScheduledClassStatuses" ToRole="ScheduledClasses" />
         </EntityType>
         <EntityType Name="Student">
           <Key>
@@ -237,7 +237,7 @@
           <Property Name="Email" Type="String" MaxLength="60" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="PhotoUrl" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="SSID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Enrollments" Relationship="Self.FK_Enrollments_Students" FromRole="Students" ToRole="Enrollments" />
+          <NavigationProperty Name="Enrollment" Relationship="Self.FK_Enrollments_Students" FromRole="Students" ToRole="Enrollments" />
           <NavigationProperty Name="StudentStatus" Relationship="Self.FK_Students_StudentStatuses" FromRole="Students" ToRole="StudentStatuses" />
         </EntityType>
         <EntityType Name="StudentStatus">
@@ -247,7 +247,7 @@
           <Property Name="SSID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="SSName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="SSDescription" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Students" Relationship="Self.FK_Students_StudentStatuses" FromRole="StudentStatuses" ToRole="Students" />
+          <NavigationProperty Name="Student" Relationship="Self.FK_Students_StudentStatuses" FromRole="StudentStatuses" ToRole="Students" />
         </EntityType>
         <EntityType Name="sysdiagram">
           <Key>

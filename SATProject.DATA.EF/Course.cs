@@ -17,7 +17,7 @@ namespace SATProject.DATA.EF
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Course()
         {
-            this.ScheduledClasses = new HashSet<ScheduledClass>();
+            this.ScheduledClass = new HashSet<ScheduledClass>();
         }
     
         public int CourseID { get; set; }
@@ -29,6 +29,6 @@ namespace SATProject.DATA.EF
         public bool IsActive { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ScheduledClass> ScheduledClasses { get; set; }
+        public virtual ICollection<ScheduledClass> ScheduledClass { get; set; }
     }
 }
