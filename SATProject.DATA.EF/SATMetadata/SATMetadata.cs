@@ -8,12 +8,6 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SATProject.DATA.EF/*.SATMetadata*/
 {
-
-    class SATMetadata
-    {
-
-    }
-
     public class StudentMetadata
     {
 
@@ -57,6 +51,7 @@ namespace SATProject.DATA.EF/*.SATMetadata*/
         public string Email { get; set; }
 
         [DisplayFormat(NullDisplayText = "")]
+        [Display(Name = "Student Photo")]
         [StringLength(100)]
         [DataType(DataType.ImageUrl)]
         public string PhotoUrl { get; set; }
@@ -64,10 +59,7 @@ namespace SATProject.DATA.EF/*.SATMetadata*/
     }
 
     [MetadataType(typeof(StudentMetadata))]
-    public partial class Author
-    {
-
-    }
+    public partial class Student { }
 
     public class StudentStatusMetadata
     {
@@ -84,10 +76,8 @@ namespace SATProject.DATA.EF/*.SATMetadata*/
     }
 
     [MetadataType(typeof(StudentStatusMetadata))]
-    public partial class Author
-    {
+    public partial class StudentStatus { }
 
-    }
 
     public class ScheduledClassMetadata
     {
@@ -114,6 +104,9 @@ namespace SATProject.DATA.EF/*.SATMetadata*/
 
     }
 
+    [MetadataType(typeof(ScheduledClassMetadata))]
+    public partial class ScheduledClass { }
+
     public class ScheduledClassStatusMetadata
     {
         [Required(ErrorMessage = "*Field Required")]
@@ -121,6 +114,9 @@ namespace SATProject.DATA.EF/*.SATMetadata*/
         [Display(Name = "Class Status")]
         public string SCSName { get; set; }
     }
+
+    [MetadataType(typeof(ScheduledClassStatusMetadata))]
+    public partial class ScheduledClassStatus { }
 
     public class CourseMetadata
     {
@@ -154,6 +150,9 @@ namespace SATProject.DATA.EF/*.SATMetadata*/
         public bool IsActive { get; set; }
     }
 
+    [MetadataType(typeof(CourseMetadata))]
+    public partial class Course { }
+
     public class EnrollmentMetadata
     {
         [Required(ErrorMessage = "*Field Required")]
@@ -163,4 +162,7 @@ namespace SATProject.DATA.EF/*.SATMetadata*/
         public virtual ScheduledClass ScheduledClass { get; set; }
         public virtual Student Student { get; set; }
     }
+
+    [MetadataType(typeof(EnrollmentMetadata))]
+    public partial class Enrollment { }
 }

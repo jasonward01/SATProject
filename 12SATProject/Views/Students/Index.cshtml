@@ -1,48 +1,28 @@
 ﻿@model IEnumerable<SATProject.DATA.EF.Student>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Students";
 }
 
-<h2>Index</h2>
-
+<div class="text-center mt-3">
+    <h2>@ViewBag.Title</h2>
+</div>
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Add New Student", "Create", null, new { @class = "btn btn-success" })
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.FirstName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LastName)
+            Student
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Major)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Address)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.City)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.State)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ZipCode)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Phone)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.Email)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.PhotoUrl)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.StudentStatus.SSName)
+            Status
         </th>
         <th></th>
     </tr>
@@ -50,42 +30,19 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.FirstName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LastName)
+            Student Names Goes Here (Need custom property to combine first last name)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Major)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Address)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.City)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.State)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ZipCode)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Phone)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.Email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PhotoUrl)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.StudentStatus.SSName)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.StudentID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.StudentID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.StudentID })
+            @Html.ActionLink("Edit", "Edit", new { id=item.StudentID }) | @Html.DisplayFor(modelItem => item.Enrollment)
         </td>
     </tr>
 }
