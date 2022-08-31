@@ -121,13 +121,13 @@ namespace SATProject.DATA.EF/*.SATMetadata*/
     public class CourseMetadata
     {
         [Required(ErrorMessage = "*Field Required")]
-        [Display(Name = "Course Name")]
+        [Display(Name = "Course")]
         [StringLength(50, ErrorMessage = "*Must be 50 characters or less.")]
         public string CourseName { get; set; }
 
         [Required(ErrorMessage = "*Field Required")]
         [UIHint("Multiline Text")]
-        [Display(Name = "Course Description")]
+        [Display(Name = "Description")]
         public string CourseDescription { get; set; }
 
         [Required(ErrorMessage = "*Field Required")]
