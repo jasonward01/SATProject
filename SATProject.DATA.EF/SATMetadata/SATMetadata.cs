@@ -8,6 +8,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SATProject.DATA.EF/*.SATMetadata*/
 {
+
+    class SATMetadata
+    {
+
+    }
+
     public class StudentMetadata
     {
 
@@ -58,9 +64,6 @@ namespace SATProject.DATA.EF/*.SATMetadata*/
 
     }
 
-    [MetadataType(typeof(StudentMetadata))]
-    public partial class Student { }
-
     public class StudentStatusMetadata
     {
         [Required(ErrorMessage = "*Field Required")]
@@ -74,10 +77,6 @@ namespace SATProject.DATA.EF/*.SATMetadata*/
         [StringLength(250)]
         public string SSDescription { get; set; }
     }
-
-    [MetadataType(typeof(StudentStatusMetadata))]
-    public partial class StudentStatus { }
-
 
     public class ScheduledClassMetadata
     {
