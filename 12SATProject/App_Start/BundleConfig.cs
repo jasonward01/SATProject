@@ -34,7 +34,8 @@ namespace SATProject.UI.MVC
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/css/bootstrap.min.css",
                       "~/Content/css/Site.css",
-                      "~/Content/css/style.css"));
+                      "~/Content/css/style.css",
+                      "~/Content/css/fontawesome.css"));
 
             bundles.Add(new StyleBundle("~/Content/lib").Include(
                       "~/Content/lib/animate/animate.min.css",

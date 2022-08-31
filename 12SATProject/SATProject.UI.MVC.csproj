@@ -202,6 +202,8 @@
     <Content Include="Content\classes.html" />
     <Content Include="Content\contact.html" />
     <Content Include="Content\css\bootstrap.min.css" />
+    <Content Include="Content\css\fontawesome.css" />
+    <Content Include="Content\css\fontawesome.min.css" />
     <Content Include="Content\css\style.css" />
     <Content Include="Content\facility.html" />
     <Content Include="Content\img\about-1.jpg" />
