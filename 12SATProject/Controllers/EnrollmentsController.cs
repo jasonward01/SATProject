@@ -39,7 +39,7 @@ namespace _12SATProject.Controllers
         // GET: Enrollments/Create
         public ActionResult Create()
         {
-            ViewBag.ScheduledClassID = new SelectList(db.ScheduledClasses, "ScheduledClassID", "InstructorName");
+            ViewBag.ScheduledClassID = new SelectList(db.ScheduledClasses, "ScheduledClassID", "CourseInfo");
             ViewBag.StudentID = new SelectList(db.Students, "StudentID", "FirstName");
             return View();
         }
@@ -49,7 +49,7 @@ namespace _12SATProject.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "EnrollmentID,StudentID,ScheduledClassID,EnrollmentDate")] Enrollment enrollment)
+        public ActionResult Create([Bind(Include = "EnrollmentID, StudentID, ScheduledClassID, EnrollmentDate")] Enrollment enrollment)
         {
             if (ModelState.IsValid)
             {
@@ -58,7 +58,7 @@ namespace _12SATProject.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.ScheduledClassID = new SelectList(db.ScheduledClasses, "ScheduledClassID", "InstructorName", enrollment.ScheduledClassID);
+            ViewBag.ScheduledClassID = new SelectList(db.ScheduledClasses, "ScheduledClassID", "CourseInfo", enrollment.ScheduledClassID);
             ViewBag.StudentID = new SelectList(db.Students, "StudentID", "FirstName", enrollment.StudentID);
             return View(enrollment);
         }
@@ -75,7 +75,7 @@ namespace _12SATProject.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.ScheduledClassID = new SelectList(db.ScheduledClasses, "ScheduledClassID", "InstructorName", enrollment.ScheduledClassID);
+            ViewBag.ScheduledClassID = new SelectList(db.ScheduledClasses, "ScheduledClassID", "CourseInfo", enrollment.ScheduledClassID);
             ViewBag.StudentID = new SelectList(db.Students, "StudentID", "FirstName", enrollment.StudentID);
             return View(enrollment);
         }
@@ -85,7 +85,7 @@ namespace _12SATProject.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "EnrollmentID,StudentID,ScheduledClassID,EnrollmentDate")] Enrollment enrollment)
+        public ActionResult Edit([Bind(Include = "EnrollmentID, StudentID, ScheduledClassID, EnrollmentDate")] Enrollment enrollment)
         {
             if (ModelState.IsValid)
             {
@@ -93,7 +93,7 @@ namespace _12SATProject.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.ScheduledClassID = new SelectList(db.ScheduledClasses, "ScheduledClassID", "InstructorName", enrollment.ScheduledClassID);
+            ViewBag.ScheduledClassID = new SelectList(db.ScheduledClasses, "ScheduledClassID", "CourseInfo", enrollment.ScheduledClassID);
             ViewBag.StudentID = new SelectList(db.Students, "StudentID", "FirstName", enrollment.StudentID);
             return View(enrollment);
         }

@@ -64,6 +64,18 @@ namespace SATProject.DATA.EF/*.SATMetadata*/
 
     }
 
+    [MetadataType(typeof(StudentMetadata))]
+    public partial class Student
+    {
+        [Required]
+        [Display(Name = "Full Name")]
+        public string FullName
+        {
+            get { return FirstName + " " + LastName; }
+        }
+
+    }
+
     public class StudentStatusMetadata
     {
         [Required(ErrorMessage = "*Field Required")]
@@ -80,16 +92,19 @@ namespace SATProject.DATA.EF/*.SATMetadata*/
 
     public class ScheduledClassMetadata
     {
-        [Required(ErrorMessage = "*Field Required")]
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString="{0:d}", ApplyFormatInEditMode = true)]
-        [Display(Name  = "Start Date")]
-        public System.DateTime StartDate { get; set; }
+        [Display(Name = "Class")]
+        public int ScheduledClassID { get; set; }
 
         [Required(ErrorMessage = "*Field Required")]
+        [DisplayFormat(DataFormatString = "{0:dd MMM yyyy}")]
+        [Display(Name = "Start Date")]
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
+        public DateTime StartDate { get; set; }
+
+        [Required(ErrorMessage = "*Field Required")]
+        [DisplayFormat(DataFormatString = "{0:dd MMM yyyy}")]
         [Display(Name = "End Date")]
+        [DataType(DataType.Date)]
         public System.DateTime EndDate { get; set; }
 
         [Required(ErrorMessage = "*Field Required")]
@@ -100,17 +115,31 @@ namespace SATProject.DATA.EF/*.SATMetadata*/
         [Required(ErrorMessage = "*Field Required")]
         [StringLength(20, ErrorMessage = "*Must be 20 characters or less.")]
         public string Location { get; set; }
-
     }
 
     [MetadataType(typeof(ScheduledClassMetadata))]
-    public partial class ScheduledClass { }
+    public partial class ScheduledClass
+    {
+        public string CourseInfo
+        {
+            get { return Course.CourseName + ", " + Location + ", " + StartDate.ToShortDateString(); }
+        }
+
+        //[Display(Name = "Class")]
+        //public int ScheduledClassInt
+        //{
+        //    get { return ScheduledClassID; }
+        //}
+
+      
+
+    }
 
     public class ScheduledClassStatusMetadata
     {
         [Required(ErrorMessage = "*Field Required")]
         [StringLength(50, ErrorMessage = "*Must be 50 characters or less.")]
-        [Display(Name = "Class Status")]
+        [Display(Name = "Status")]
         public string SCSName { get; set; }
     }
 
@@ -120,20 +149,20 @@ namespace SATProject.DATA.EF/*.SATMetadata*/
     public class CourseMetadata
     {
         [Required(ErrorMessage = "*Field Required")]
-        [Display(Name = "Course Name")]
+        [Display(Name = "Name")]
         [StringLength(50, ErrorMessage = "*Must be 50 characters or less.")]
         public string CourseName { get; set; }
 
         [Required(ErrorMessage = "*Field Required")]
         [UIHint("Multiline Text")]
-        [Display(Name = "Course Description")]
+        [Display(Name = "Description")]
         public string CourseDescription { get; set; }
 
         [Required(ErrorMessage = "*Field Required")]
         [Display(Name = "Credit Hours")]
         public byte CreditHours { get; set; }
 
-        [DisplayFormat(NullDisplayText ="")]
+        [DisplayFormat(NullDisplayText = "")]
         [UIHint("Multiline Text")]
         [StringLength(250, ErrorMessage = "*Must be 250 characters or less.")]
         public string Curriculum { get; set; }
@@ -155,9 +184,12 @@ namespace SATProject.DATA.EF/*.SATMetadata*/
     public class EnrollmentMetadata
     {
         [Required(ErrorMessage = "*Field Required")]
-        [DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:dd MMM yyyy}")]
+        [Display(Name = "Enrollment Date")]
+        [DataType(DataType.Date)]
         public System.DateTime EnrollmentDate { get; set; }
 
+        [Display(Name = "Scheduled Class")]
         public virtual ScheduledClass ScheduledClass { get; set; }
         public virtual Student Student { get; set; }
     }

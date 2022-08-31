@@ -30,7 +30,7 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            Student Names Goes Here (Need custom property to combine first last name)
+            @Html.DisplayFor(modelItem => item.FullName)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Major)
