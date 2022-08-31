@@ -30,7 +30,7 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            Student Names Goes Here (Need custom property to combine first last name)
+            @Html.DisplayFor(modelItem => item.FirstName)  @Html.DisplayFor(modelItem => item.LastName)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Major)
@@ -42,7 +42,7 @@
             @Html.DisplayFor(modelItem => item.StudentStatus.SSName)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.StudentID }) | @Html.DisplayFor(modelItem => item.Enrollment)
+            @Html.ActionLink("Edit", "Edit", new { id=item.StudentID }) | 
         </td>
     </tr>
 }

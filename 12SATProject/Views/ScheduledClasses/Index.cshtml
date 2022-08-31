@@ -1,35 +1,28 @@
 ﻿@model IEnumerable<SATProject.DATA.EF.ScheduledClass>
 
 @{
-    ViewBag.Title = "Index";
-}
-
-<h2>Index</h2>
-
+    ViewBag.Title = "Scheduled Classes"; }
+<div class="text-center mb-3 mt-3">
+    <h2>@ViewBag.Title</h2>
+</div>
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Schedule a Class", "Create", null, new { @class = "btn btn-success" })
 </p>
 <table class="table">
-    <tr>
+    <tr class="bg-dark">
         <th>
             @Html.DisplayNameFor(model => model.StartDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.EndDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.InstructorName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Location)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Course.CourseName)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.Location)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.ScheduledClassStatus.SCSName)
         </th>
-        <th></th>
+        <th>Status Update</th>
     </tr>
 
 @foreach (var item in Model) {
@@ -38,24 +31,21 @@
             @Html.DisplayFor(modelItem => item.StartDate)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.EndDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.InstructorName)
+            @Html.DisplayFor(modelItem => item.Course.CourseName)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Location)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Course.CourseName)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.ScheduledClassStatus.SCSName)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ScheduledClassID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ScheduledClassID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ScheduledClassID })
+            <input type="button" value="Active" id="activeBtn" class="btn btn-default" /> |
+            <input type="button" value="Pending" id="pendingBtn" class="btn btn-default" /> |
+            <input type="button" value="Completed" id="completeBtn" class="btn btn-default" /> |
+            <input type="button" value="Cancelled" id="cancelledBtn" class="btn btn-default" />
+
+        @Html.ActionLink("Edit", "Delete", new {id = item.ScheduledClassID} ) 
         </td>
     </tr>
 }
