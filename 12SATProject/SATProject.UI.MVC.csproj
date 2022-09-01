@@ -250,6 +250,7 @@
     <Content Include="Content\lib\wow\wow.min.js" />
     <Content Include="Content\preschool-website-template.jpg" />
     <Content Include="Content\Site.css" />
+    <Content Include="Content\StudentImages\noimage.png" />
     <Content Include="Content\team.html" />
     <Content Include="Content\testimonial.html" />
     <Content Include="favicon.ico" />
