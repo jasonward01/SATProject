@@ -52,10 +52,36 @@ namespace _12SATProject.Controllers
         [HttpPost]
         [AuthAdminOnly]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "StudentID,FirstName,LastName,Major,Address,City,State,ZipCode,Phone,Email,PhotoUrl,SSID")] Student student)
+        public ActionResult Create([Bind(Include = "StudentID,FirstName,LastName,Major,Address,City,State,ZipCode,Phone,Email,PhotoUrl,SSID")] Student student, HttpPostedFileBase photo)
         {
             if (ModelState.IsValid)
             {
+                #region File Upload
+                string imgName = "noimage.png";
+                if (photo != null)
+                {
+                    imgName = photo.FileName;
+
+                    string ext = imgName.Substring(imgName.LastIndexOf('.'));
+
+                    string[] goodExts = { ".jpeg", ".jpg", ".png" };
+
+                    if (goodExts.Contains(ext.ToLower()) && (photo.ContentLength <= 4194304))
+                    {
+                        imgName = Guid.NewGuid() + ext;
+
+                        photo.SaveAs(Server.MapPath("~/Content/StudentImages/" + imgName));
+                    }
+                    else
+                    {
+                        imgName = "noimage.png";
+                    }
+                }
+
+
+                student.PhotoUrl = imgName;
+                #endregion
+
                 db.Students.Add(student);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -88,10 +114,39 @@ namespace _12SATProject.Controllers
         [HttpPost]
         [AuthAdminOnly]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "StudentID,FirstName,LastName,Major,Address,City,State,ZipCode,Phone,Email,PhotoUrl,SSID")] Student student)
+        public ActionResult Edit([Bind(Include = "StudentID,FirstName,LastName,Major,Address,City,State,ZipCode,Phone,Email,PhotoUrl,SSID")] Student student, HttpPostedFileBase photo)
         {
             if (ModelState.IsValid)
             {
+                #region File Upload
+
+                if (photo != null)
+                {
+                    string imgName = photo.FileName;
+
+                    string ext = imgName.Substring(imgName.LastIndexOf('.'));
+
+                    string[] goodExts = { ".jpeg", ".jpg", ".png" };
+
+                    if (goodExts.Contains(ext.ToLower()) && (photo.ContentLength <= 4194304))
+                    {
+                        imgName = Guid.NewGuid() + ext;
+
+                        photo.SaveAs(Server.MapPath("~/Content/StudentImages/" + imgName));
+
+                        if (student.PhotoUrl != null && student.PhotoUrl != "noimage.png")
+                        {
+                            System.IO.File.Delete(Server.MapPath("~/Content/StudentImages/" + Session["currentImage"].ToString()));
+                            
+                        }
+
+                        student.PhotoUrl = imgName;
+                    }
+
+
+                }
+
+                #endregion
                 db.Entry(student).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -123,6 +178,12 @@ namespace _12SATProject.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Student student = db.Students.Find(id);
+
+            if (student.PhotoUrl != null && student.PhotoUrl != "noimage.png")
+            {
+                System.IO.File.Delete(Server.MapPath("~/Content/StudentImages/" + Session["currentImage"].ToString()));
+            }
+
             db.Students.Remove(student);
             db.SaveChanges();
             return RedirectToAction("Index");

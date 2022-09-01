@@ -95,7 +95,8 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.PhotoUrl)
+            @*@Html.DisplayFor(model => model.PhotoUrl)*@
+            <img src="~/Content/StudentImages/@Model.PhotoUrl" alt="@Model.FullName" />
         </dd>
 
         <dt>
