@@ -10,11 +10,13 @@ using SATProject.DATA.EF;
 
 namespace _12SATProject.Controllers
 {
+    
     public class ScheduledClassesController : Controller
     {
         private SATEntities db = new SATEntities();
 
         // GET: ScheduledClasses
+        [AuthAllExceptAnon]
         public ActionResult Index()
         {
             var scheduledClasses = db.ScheduledClasses.Include(s => s.Course).Include(s => s.ScheduledClassStatus);
@@ -22,6 +24,7 @@ namespace _12SATProject.Controllers
         }
 
         // GET: ScheduledClasses/Details/5
+        [AuthAllExceptAnon]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -37,6 +40,7 @@ namespace _12SATProject.Controllers
         }
 
         // GET: ScheduledClasses/Create
+        [AuthAllExceptAnon]
         public ActionResult Create()
         {
             ViewBag.CourseID = new SelectList(db.Courses, "CourseID", "CourseName");
@@ -49,6 +53,7 @@ namespace _12SATProject.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [AuthAllExceptAnon]
         public ActionResult Create([Bind(Include = "ScheduledClassID,CourseID,StartDate,EndDate,InstructorName,Location,SCSID")] ScheduledClass scheduledClass)
         {
             if (ModelState.IsValid)
@@ -64,6 +69,7 @@ namespace _12SATProject.Controllers
         }
 
         // GET: ScheduledClasses/Edit/5
+        [AuthAllExceptAnon]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -85,6 +91,7 @@ namespace _12SATProject.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [AuthAllExceptAnon]
         public ActionResult Edit([Bind(Include = "ScheduledClassID,CourseID,StartDate,EndDate,InstructorName,Location,SCSID")] ScheduledClass scheduledClass)
         {
             if (ModelState.IsValid)
@@ -99,6 +106,7 @@ namespace _12SATProject.Controllers
         }
 
         // GET: ScheduledClasses/Delete/5
+        [AuthAdminOnly]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -114,6 +122,7 @@ namespace _12SATProject.Controllers
         }
 
         // POST: ScheduledClasses/Delete/5
+        [AuthAdminOnly]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

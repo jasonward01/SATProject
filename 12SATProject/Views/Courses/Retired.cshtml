@@ -1,14 +1,15 @@
 ﻿@model IEnumerable<SATProject.DATA.EF.Course>
 
 @{
-    ViewBag.Title = "Active Courses";
+    ViewBag.Title = "Retired Courses";
+
 
 }
 <div class="text-center mb-3 mt-3">
     <h2>@ViewBag.Title</h2>
 </div>
 <p>
-    @Html.ActionLink("Add New Course", "Create", null, new { @class = "btn btn-success" }) | @Html.ActionLink("View Retired Courses", "Retired", null, new { @class = "btn btn-danger" })
+    @Html.ActionLink("Add New Course", "Create", null, new { @class = "btn btn-success" }) | @Html.ActionLink("View Active Courses", "Index", null, new { @class = "btn btn-danger" })
 
     <table class="table activeTable">
         <tr>
@@ -27,7 +28,7 @@
 
         @foreach (var item in Model)
         {
-            if (item.IsActive == true)
+            if (item.IsActive == false)
             {
                 <tr>
                     <td>
@@ -36,16 +37,14 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.CreditHours)
                     </td>
-                    <td class="courseStatus">
+                    <td>
                         @(item.IsActive ? "Active" : "Retired" )
                     </td>
                     <td>
                         @Html.ActionLink("Edit", "Edit", new { id = item.CourseID }) |
-                        @Html.ActionLink("Retire", "Retire", new { id = item.CourseID })
+                        @Html.ActionLink("Delete", "Delete", new { id = item.CourseID })
                     </td>
                 </tr>
             }
         }
     </table>
-
-

@@ -15,6 +15,7 @@ namespace _12SATProject.Controllers
         private SATEntities db = new SATEntities();
 
         // GET: Students
+        [AuthAllExceptAnon]
         public ActionResult Index()
         {
             var students = db.Students.Include(s => s.StudentStatus);
@@ -22,6 +23,7 @@ namespace _12SATProject.Controllers
         }
 
         // GET: Students/Details/5
+        [AuthAllExceptAnon]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -37,6 +39,7 @@ namespace _12SATProject.Controllers
         }
 
         // GET: Students/Create
+        [AuthAdminOnly]
         public ActionResult Create()
         {
             ViewBag.SSID = new SelectList(db.StudentStatuses, "SSID", "SSName");
@@ -47,6 +50,7 @@ namespace _12SATProject.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [AuthAdminOnly]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "StudentID,FirstName,LastName,Major,Address,City,State,ZipCode,Phone,Email,PhotoUrl,SSID")] Student student)
         {
@@ -62,6 +66,7 @@ namespace _12SATProject.Controllers
         }
 
         // GET: Students/Edit/5
+        [AuthAdminOnly]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -81,6 +86,7 @@ namespace _12SATProject.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [AuthAdminOnly]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "StudentID,FirstName,LastName,Major,Address,City,State,ZipCode,Phone,Email,PhotoUrl,SSID")] Student student)
         {
@@ -95,6 +101,7 @@ namespace _12SATProject.Controllers
         }
 
         // GET: Students/Delete/5
+        [AuthAdminOnly]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -110,6 +117,7 @@ namespace _12SATProject.Controllers
         }
 
         // POST: Students/Delete/5
+        [AuthAdminOnly]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

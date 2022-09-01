@@ -1,29 +1,41 @@
 ﻿@using Microsoft.AspNet.Identity
-@if (Request.IsAuthenticated && User.IsInRole("Admin")) {
-    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" })) {
+@if (Request.IsAuthenticated && User.IsInRole("Admin"))
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
         @Html.AntiForgeryToken()
 
-<div>
-    <ul class="nav navbar-nav navbar-right">
-        <li>
-            <h5 class="text-light bg-dark p-3 m-auto">Members Area</h5>
-        </li>
-        <li class="nav-item nav-link nav-custom p-3">
-            @*-Need to find the index of the @ symbol character
-               -Using the index number for the @ symbol as the upper bound, splice the string
-                -"I want from the beginning of the string, all the way to "this" index number*@
-            Hello @User.Identity.GetUserName().Substring(0, User.Identity.GetUserName().IndexOf('@'))!
-        <li class="nav-item nav-link nav-custom p-3"><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
-        <li>@Html.ActionLink("Roles", "Index", "RolesAdmin", null, new { @class = "nav-custom nav-item nav-link p-3"})</li>
-        <li>@Html.ActionLink("Users", "Index", "UsersAdmin", null, new { @class = "nav-custom nav-item nav-link p-3" })</li>
-    </ul>
-</div>
+        <div>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <h5 class="text-light bg-dark p-3 m-auto">Members Area</h5>
+                </li>
+                <li class="nav-item nav-link nav-custom p-3">
+                    @*-Need to find the index of the @ symbol character
+                        -Using the index number for the @ symbol as the upper bound, splice the string
+                         -"I want from the beginning of the string, all the way to "this" index number*@
+                    Hello @User.Identity.GetUserName().Substring(0, User.Identity.GetUserName().IndexOf('@'))!
+                <li class="nav-item nav-link nav-custom p-3"><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+                <li>@Html.ActionLink("Roles", "Index", "RolesAdmin", null, new { @class = "nav-custom nav-item nav-link p-3" })</li>
+                <li>@Html.ActionLink("Users", "Index", "UsersAdmin", null, new { @class = "nav-custom nav-item nav-link p-3" })</li>
+            </ul>
+        </div>
     }
 }
-else {
-    <ul class="nav navbar-nav navbar-right">
-        <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
-        <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
-    </ul>
+else
+{
+    if (Request.IsAuthenticated)
+    {
+
+    }
+    else
+    {
+
+        <ul class="nav navbar-nav navbar-right">
+            <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+            <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+        </ul>
+
+    }
 }
 

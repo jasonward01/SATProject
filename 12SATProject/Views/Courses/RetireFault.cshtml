@@ -1,0 +1,23 @@
+﻿@model IEnumerable<SATProject.DATA.EF.Course>
+
+@{
+    ViewBag.Title = "Error: Could Not Retire";
+
+}
+<div class="text-center mb-3 mt-3">
+    <h2>@ViewBag.Title</h2>
+</div>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-10 col-lg-10 col-sm-10 col-xs-10">
+            <p>This course cannot be retired. There are still classes scheduled for it.</p>
+        </div>
+    </div>
+</div>
+
+<p>
+    @Html.ActionLink("Back to Course List", "Index", null, new { @class = "btn btn-info mb-3 mt-3" })
+</p>
+
