@@ -173,8 +173,7 @@ namespace SATProject.DATA.EF/*.SATMetadata*/
         public string Notes { get; set; }
 
         [NotMapped]
-        [Display(Name = "Is Active")]
-        [Range(typeof(bool), "true", "true", ErrorMessage = "The field Is Active must be checked.")]
+        [Display(Name = "Status")]
         public bool IsActive { get; set; }
     }
 

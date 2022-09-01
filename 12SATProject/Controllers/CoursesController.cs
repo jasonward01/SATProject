@@ -10,14 +10,30 @@ using SATProject.DATA.EF;
 
 namespace _12SATProject.Controllers
 {
-    public class CoursesController : Controller
+    public class AuthAdminOnly : AuthorizeAttribute
     {
+        protected override bool AuthorizeCore(HttpContextBase httpContext)
+        {
+            return httpContext.User.IsInRole("Admin");
+        }
+    }
+    [AuthAdminOnly]
+    public class CoursesController : Controller
+    {   
         private SATEntities db = new SATEntities();
 
         // GET: Courses
         public ActionResult Index()
         {
             return View(db.Courses.ToList());
+        }
+        
+        // GET: Retired Courses
+        public ActionResult Retired()
+        {
+
+            return View(db.Courses.ToList());
+
         }
 
         // GET: Courses/Details/5
@@ -87,6 +103,51 @@ namespace _12SATProject.Controllers
                 return RedirectToAction("Index");
             }
             return View(course);
+        }
+
+        // GET: Courses/Retire/5
+        public ActionResult Retire(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Course course = db.Courses.Find(id);
+            if (course == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            return View(course);
+        }
+
+        //POST: Courses/Retire/5
+
+         [HttpPost, ActionName("Retire")]
+         [ValidateAntiForgeryToken]
+         public ActionResult RetireConfirmed(int id)
+        {
+            Course course = db.Courses.Find(id);
+
+            //if (course.ScheduledClass.Count >= 1)
+            //{
+
+            //}
+            if (course.ScheduledClass != null)
+            {
+                return RedirectToAction("RetireFault");
+            }
+            else
+            {
+                course.IsActive = !course.IsActive;
+                db.Entry(course).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+        }
+
+        public ActionResult RetireFault()
+        {
+            return View();
         }
 
         // GET: Courses/Delete/5

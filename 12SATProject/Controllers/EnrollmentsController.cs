@@ -10,6 +10,17 @@ using SATProject.DATA.EF;
 
 namespace _12SATProject.Controllers
 {
+
+    public class AuthAllExceptAnon : AuthorizeAttribute
+    {
+        protected override bool AuthorizeCore(HttpContextBase httpContext)
+        {
+
+            return httpContext.User.IsInRole("Admin") || httpContext.User.IsInRole("Scheduling");
+        }
+    }
+
+    [AuthAllExceptAnon]
     public class EnrollmentsController : Controller
     {
         private SATEntities db = new SATEntities();

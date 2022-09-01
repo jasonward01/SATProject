@@ -9,4 +9,5 @@ namespace SATProject.UI.MVC
             filters.Add(new HandleErrorAttribute());
         }
     }
+
 }

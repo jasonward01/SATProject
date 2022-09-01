@@ -576,6 +576,9 @@
     <Content Include="Views\StudentStatus\Index.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
     <Content Include="Views\Shared\_AdminPartial.cshtml" />
+    <Content Include="Views\Courses\Retired.cshtml" />
+    <Content Include="Views\Courses\Retire.cshtml" />
+    <Content Include="Views\Courses\RetireFault.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

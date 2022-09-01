@@ -4,6 +4,8 @@
     ViewBag.Title = "Email Confirmation";
 }
 
+@User.Identity.IsAuthenticated
+{
 <div class="col-md-offset-4 col-md-10 bg-light rounded-2 mt-5 p-2">
     <h2>@ViewBag.Title</h2>
     <dl class="dl-horizontal col-md-8">
@@ -41,3 +43,4 @@
 
     </dl>
 </div>
+}

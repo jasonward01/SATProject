@@ -10,6 +10,7 @@ using SATProject.DATA.EF;
 
 namespace _12SATProject.Controllers
 {
+    [AuthAdminOnly]
     public class StudentStatusController : Controller
     {
         private SATEntities db = new SATEntities();
