@@ -130,10 +130,10 @@ namespace _12SATProject.Controllers
 
                         if (student.PhotoUrl != null && student.PhotoUrl != "noimage.png")
                         {
-                            System.IO.File.Delete(Server.MapPath("~/Content/StudentImages/" + Session["currentImage"].ToString()));
-                            
-                        }
+                            System.IO.File.Delete(Server.MapPath("~/Content/StudentImages/" + student.PhotoUrl));
 
+                        }
+                        
                         student.PhotoUrl = imgName;
                     }
 
