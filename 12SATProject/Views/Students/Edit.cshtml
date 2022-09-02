@@ -93,7 +93,7 @@
             <div class="col-md-10">
                 @*@Html.EditorFor(model => model.PhotoUrl, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.PhotoUrl, "", new { @class = "text-danger" })*@
-                Current Image: <img width="150" src="@Url.Content("~/Content/StudentImages/"+Model.PhotoUrl)"/><br/><br/>
+                Current Image: <img width="150" src="@Url.Content("~/Content/StudentImages/" + Model.PhotoUrl)"/><br/><br/>
                 Change Image: <input type="file" style="display:inline" name="photo"/>
             </div>
         </div>

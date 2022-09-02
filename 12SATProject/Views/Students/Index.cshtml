@@ -16,6 +16,9 @@
             Student
         </th>
         <th>
+            Photo
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.Major)
         </th>
         <th>
@@ -29,8 +32,12 @@
 
 @foreach (var item in Model) {
     <tr>
+
         <td>
             @Html.DisplayFor(modelItem => item.FullName)
+        </td>
+        <td>
+            <img src="~/Content/StudentImages/@item.PhotoUrl" class="abc">
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Major)
@@ -42,7 +49,7 @@
             @Html.DisplayFor(modelItem => item.StudentStatus.SSName)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.StudentID }) | 
+            @Html.ActionLink("Edit", "Edit", new { id = item.StudentID }) |
         </td>
     </tr>
 }
